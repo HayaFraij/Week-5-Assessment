@@ -12,9 +12,13 @@ Ex:  hello(null) => null
 
 */
 
-function hello() {
+function hello(name) {
   // WRITE YOUR CODE UNDER THIS LINE  
 
+  if(name === undefined || name === ''){
+    return null;
+  }
+  return 'Hello ' + name + ' !';
 }
 
 
@@ -32,9 +36,10 @@ Ex: calculateTax(100,0.15)
 => "You got 100 JD from sales, you should pay 15 JD for tax and you will have 85 JD as net sales."
 */
 
-function calculateTax() {
+function calculateTax(sales, tax) {
   // WRITE YOUR CODE UNDER THIS LINE 
-
+  var net = sales - (sales * tax) 
+  return "You got " + sales + " JD from sales, you should pay " + (sales * tax) + " JD for tax and you will have " + net + " JD as net sales."
 }
 
 
@@ -52,11 +57,25 @@ Ex: repeatChar("a",2); => "a, A"
 Ex: repeatChar("C",5); => "C, c, C, c, C"
 */
 
-function repeatChar() {
+function repeatChar(char, num) {
   // WRITE YOUR CODE UNDER THIS LINE         
+  var repeat = char;
+  // var count = 0;
+  var testChar = /^[A-Z]/;
 
+  while (num >= 2) {
+    while (testChar.test(char)) {
+      repeat = repeat + ', ' + char.toLowerCase();
+      // count++;
+      char = char.toLowerCase();
+      num--;
+    }
+    repeat = repeat + ', ' + char.toUpperCase();
+    num --;
+    char = char.toUpperCase();
+  }
+  return repeat;
 }
-
 
 /* Q4:
 Using recursion 
@@ -72,9 +91,12 @@ Ex: stringToCapital("Are you a student in coding ACADEMY by ORANGE ?")
 => "ARE YOU A STUDENT IN CODING ACADEMY BY ORANGE ?"
 */
 
-function stringToCapital() {
+function stringToCapital(str) {
   // WRITE YOUR CODE UNDER THIS LINE         
-
+  if(str.length === 0){
+    return '';
+  }
+  return str[0].toUpperCase() + stringToCapital(str.slice(1));
 }
 
-// Good luck :)
+// Good luck :);
